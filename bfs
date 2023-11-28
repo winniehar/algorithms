@@ -1,0 +1,18 @@
+def bfs(graph):
+    if not graph:
+        return # return whatever data type `dfs` is supposed to return
+
+    def bfs_helper(queue):
+        visited = set()
+        while queue:
+            r, c = queue.popleft()
+            visited.add((r, c))
+            for i, j in ((1,0), (0,1), (-1,0), (0,-1)):
+                new_r, new_c = r + i, j + c
+                if 0 <= new_r < rows and 0 <= new_c < cols:
+                    # Add any other checks
+                    queue.append((new_r, new_c))
+
+    # need to initialize with initial starting point(s)
+    queue = collections.deque()
+    bfs_helper(queue)
