@@ -1,0 +1,26 @@
+def dfs(graph):
+    if not graph:
+        return # return whatever data type `dfs` is supposed to return
+          
+    # Step 1: 
+    rows, cols = len(graph), len(graph[0])
+    visited = set()
+    neighbors = ((0, 1), (0, -1), (1, 0), (-1, 0))
+
+    def dfs_helper(r, c):
+        # Step 2a:
+        if (r, c) in visited:
+            return
+		    # Step 2b:
+        visited.add((r, c))
+
+        # Step 2c:
+        for i, j in neighbors:
+            new_r, new_c = r + i, c + j
+            if 0 <= new_r < rows and 0 <= new_c < cols:
+                dfs_helper(new_r, new_c)
+
+    # Step 2:
+    for i in range(rows):
+        for j in range(cols):
+            dfs_helper(i, j)
