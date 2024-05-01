@@ -1,0 +1,23 @@
+class Trie:
+    def __init__(self):
+        self.root = {}
+    
+    def insert(self, word):
+        curr = self.root
+        
+        for character in word:
+            if character not in curr:
+                curr[character] = {}
+            curr = curr[character]
+        curr['#'] = word
+
+    ##  returns True/False whether the exact word is found
+    def find(self, word):
+        curr = self.root
+        
+        for character in word:
+            if character not in curr:
+                return False
+            curr = curr[character]
+        
+        return '#' in curr
